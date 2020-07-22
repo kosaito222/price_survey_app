@@ -1,6 +1,12 @@
 %main.container-fluid
-  .row
-    %span.small.text-secondary.m-2 約 100 件 (0.63 秒)
+  .row.my-2
+    .col-4
+      %span.small.text-secondary 約 100 件 (0.63 秒)
+    .col-8
+      %form.form-inline.justify-content-end
+        %input.form-control.form-control-sm.mr-sm-2.w-25{type: "search"}
+        -# 通常検索
+        %button.btn.btn-success.btn-sm.my-2.my-sm-0 Comparison
   .row.justify-content-center
     .table-responsive
       %table.table.table-striped.table-hover
