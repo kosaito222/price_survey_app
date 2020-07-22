@@ -34,5 +34,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "haml-rails", "~> 2.0"
 gem 'font-awesome-sass', '~> 5.13.0'
 gem 'rakuten_web_service'
+gem 'uglifier'
 gem 'bootstrap', '~> 4.5.0'
 gem 'jquery-rails'
