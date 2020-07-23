@@ -1,7 +1,9 @@
 %main.container-fluid
   .row.my-2
     .col-4
-      %span.small.text-secondary 約 100 件 (0.63 秒)
+      %span.small.text-secondary
+        - if @items.present?
+          = "約 #{@items.count} 件"
     .col-8
       %form.form-inline.justify-content-end
         %input.form-control.form-control-sm.mr-sm-2.w-25{type: "search"}
@@ -24,179 +26,38 @@
             %th{scope: "col"} realPrice
             %th{scope: "col"} comparison
         %tbody
-          %tr
-            %th{scope: "row"} 1
-            %td
-              = link_to 'https://www.hermanmiller.com/ja_jp/products/seating/office-chairs/aeron-chairs/', target: :blank do
-                = image_tag 'aeron_chairs.jpg', alt: 'aeron_chaires', class: 'img-thumbnail', width: '200px'
-            %td aeron cahirs
-            %td 12345-67890
-            %td herman miller
-            %td 999999
-            %td 4.89
-            %td 200,000
-            %td 10
-            %td 180,000
-            %td -1000
-          %tr
-            %th{scope: "row"} 1
-            %td
-              = link_to 'https://www.hermanmiller.com/ja_jp/products/seating/office-chairs/embody-chairs/', target: :blank do
-                = image_tag 'embody_chairs.jpg', alt: 'embody_chaires', class: 'img-thumbnail', width: '200px'
-            %td embody cahirs
-            %td 12345-67890
-            %td herman miller
-            %td 999999
-            %td 4.89
-            %td 200,000
-            %td 10
-            %td 180,000
-            %td -1000
-          %tr
-            %th{scope: "row"} 1
-            %td
-              = link_to 'https://www.hermanmiller.com/ja_jp/products/seating/office-chairs/sayl-chairs/', target: :blank do
-                = image_tag 'sayl_chairs.jpg', alt: 'sayl_chaires', class: 'img-thumbnail', width: '200px'
-            %td sayle cahirs
-            %td 12345-67890
-            %td herman miller
-            %td 999999
-            %td 4.89
-            %td 200,000
-            %td 10
-            %td 180,000
-            %td -1000
-          %tr
-            %th{scope: "row"} 1
-            %td
-              = link_to 'https://www.hermanmiller.com/ja_jp/products/seating/office-chairs/aeron-chairs/', target: :blank do
-                = image_tag 'aeron_chairs.jpg', alt: 'aeron_chaires', class: 'img-thumbnail', width: '200px'
-            %td aeron cahirs
-            %td 12345-67890
-            %td herman miller
-            %td 999999
-            %td 4.89
-            %td 200,000
-            %td 10
-            %td 180,000
-            %td -1000
-          %tr
-            %th{scope: "row"} 1
-            %td
-              = link_to 'https://www.hermanmiller.com/ja_jp/products/seating/office-chairs/embody-chairs/', target: :blank do
-                = image_tag 'embody_chairs.jpg', alt: 'embody_chaires', class: 'img-thumbnail', width: '200px'
-            %td embody cahirs
-            %td 12345-67890
-            %td herman miller
-            %td 999999
-            %td 4.89
-            %td 200,000
-            %td 10
-            %td 180,000
-            %td -1000
-          %tr
-            %th{scope: "row"} 1
-            %td
-              = link_to 'https://www.hermanmiller.com/ja_jp/products/seating/office-chairs/sayl-chairs/', target: :blank do
-                = image_tag 'sayl_chairs.jpg', alt: 'sayl_chaires', class: 'img-thumbnail', width: '200px'
-            %td sayle cahirs
-            %td 12345-67890
-            %td herman miller
-            %td 999999
-            %td 4.89
-            %td 200,000
-            %td 10
-            %td 180,000
-            %td -1000
-          %tr
-            %th{scope: "row"} 1
-            %td
-              = link_to 'https://www.hermanmiller.com/ja_jp/products/seating/office-chairs/aeron-chairs/', target: :blank do
-                = image_tag 'aeron_chairs.jpg', alt: 'aeron_chaires', class: 'img-thumbnail', width: '200px'
-            %td aeron cahirs
-            %td 12345-67890
-            %td herman miller
-            %td 999999
-            %td 4.89
-            %td 200,000
-            %td 10
-            %td 180,000
-            %td -1000
-          %tr
-            %th{scope: "row"} 1
-            %td
-              = link_to 'https://www.hermanmiller.com/ja_jp/products/seating/office-chairs/embody-chairs/', target: :blank do
-                = image_tag 'embody_chairs.jpg', alt: 'embody_chaires', class: 'img-thumbnail', width: '200px'
-            %td embody cahirs
-            %td 12345-67890
-            %td herman miller
-            %td 999999
-            %td 4.89
-            %td 200,000
-            %td 10
-            %td 180,000
-            %td -1000
-          %tr
-            %th{scope: "row"} 1
-            %td
-              = link_to 'https://www.hermanmiller.com/ja_jp/products/seating/office-chairs/sayl-chairs/', target: :blank do
-                = image_tag 'sayl_chairs.jpg', alt: 'sayl_chaires', class: 'img-thumbnail', width: '200px'
-            %td sayle cahirs
-            %td 12345-67890
-            %td herman miller
-            %td 999999
-            %td 4.89
-            %td 200,000
-            %td 10
-            %td 180,000
-            %td -1000
-          %tr
-            %th{scope: "row"} 1
-            %td
-              = link_to 'https://www.hermanmiller.com/ja_jp/products/seating/office-chairs/aeron-chairs/', target: :blank do
-                = image_tag 'aeron_chairs.jpg', alt: 'aeron_chaires', class: 'img-thumbnail', width: '200px'
-            %td aeron cahirs
-            %td 12345-67890
-            %td herman miller
-            %td 999999
-            %td 4.89
-            %td 200,000
-            %td 10
-            %td 180,000
-            %td -1000
-          %tr
-            %th{scope: "row"} 1
-            %td
-              = link_to 'https://www.hermanmiller.com/ja_jp/products/seating/office-chairs/embody-chairs/', target: :blank do
-                = image_tag 'embody_chairs.jpg', alt: 'embody_chaires', class: 'img-thumbnail', width: '200px'
-            %td embody cahirs
-            %td 12345-67890
-            %td herman miller
-            %td 999999
-            %td 4.89
-            %td 200,000
-            %td 10
-            %td 180,000
-            %td -1000
-          %tr
-            %th{scope: "row"} 1
-            %td
-              = link_to 'https://www.hermanmiller.com/ja_jp/products/seating/office-chairs/sayl-chairs/', target: :blank do
-                = image_tag 'sayl_chairs.jpg', alt: 'sayl_chaires', class: 'img-thumbnail', width: '200px'
-            %td sayle cahirs
-            %td 12345-67890
-            %td herman miller
-            %td 999999
-            %td 4.89
-            %td 200,000
-            %td 10
-            %td 180,000
-            %td -1000
+          - if @items.present?
+            - num = @items.count
+            - @items.each_with_index do |item, num|
+              %tr
+                %th{scope: "row"}
+                  = num + 1
+                %td
+                  = link_to item['itemUrl'], target: :blank do
+                    = image_tag item['smallImageUrls'][0], alt: 'aeron_chaires', class: 'img-thumbnail', width: '200px'
+                %td
+                  = item['shopName']
+                %td
+                  = item['itemCode']
+                %td
+                  = item['itemName']
+                %td
+                  = item['reviewCount']
+                %td
+                  = item['reviewAverage']
+                %td
+                  = (item['itemPrice']).to_s(:delimited)
+                %td
+                  = item['pointRate']
+                %td
+                  = (item['itemPrice'].to_i * ( 1 - item['pointRate'].to_i * 0.01)).floor.to_s(:delimited)
+                %td -1000
+
   .row.justify-content-center
     %nav.mt-3{"area-label": "ページネーション" }
       %ul.pagination
         %li.pate-item.disabled
-          = link_to '#', class: 'page-link', tabindex: "-1" do
+          = link_to "search_words?#{@items}", class: 'page-link', tabindex: "-1" do
             = '前'
         %li.pate-item.active
           = link_to '#', class: 'page-link' do

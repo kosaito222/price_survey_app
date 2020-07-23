@@ -1,10 +1,12 @@
 .jumbotron.jumbtron-fluid.mb-0
-  %form.form-inline.justify-content-center
-    %input.form-control.mr-sm-2.w-50{type: "search"}
-    -# 通常検索
-    %button.btn.btn-primary.my-2.my-sm-0 Search
-    -# 詳細検索
-    %button.btn.btn-outline-secondary.my-2.ml-sm-2{ type: "button", "data-toggle": "modal", "data-target": "#exampleModal" } Detaile
+  = form_with url: search_words_path, method: 'GET', class: 'form-inline justify-content-center', local: true do |f|
+    = f.text_field :keyword, class: 'form-control mr-sm-2 w-50', minlength: 2
+    = f.submit 'Search', class: 'btn btn-primary my-2 my-sm-0'
+
+    -# モーダルでの詳細検索
+    -# あとでヘルパーメソッド使って書き直すけどモーダル使用してるので注意
+    -# %button.btn.btn-outline-secondary.my-2.ml-sm-2{ type: "button", "data-toggle": "modal", "data-target": "#exampleModal" } Detaile
+
     -# モーダル外枠
     #exampleModal.modal{tabindex: "-1", role: "dialog", "aria-labelledby": "exampleModalLabel", "aria-hidden": "true"}
       -# モーダル本体
@@ -49,7 +51,7 @@
               %label.col-sm-4.col-form-label.col-form-label-sm 並び替え
               .col-sm-8
                 .form-check.justify-content-start
-                  %input#radios1.form-check-input{type: "radio", name: "radios", value: "option1", checked: "checked"}
+                  %input#radios1.form-check-input{type: "radio", name: "radios", value: "option1"}
                   %label.form-check-label.small{for: "radios1"} 標準
                 .form-check.justify-content-start
                   %input#radios2.form-check-input{type: "radio", name: "radios", value: "option2"}
