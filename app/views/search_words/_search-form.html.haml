@@ -1,18 +1,18 @@
 .jumbotron.jumbtron-fluid.mb-0
-  = form_with url: search_words_path, method: 'GET', class: 'form-inline justify-content-center', local: true do |f|
-    = f.text_field :keyword, class: 'form-control mr-sm-2 w-50', minlength: 2
-    = f.submit 'Search', class: 'btn btn-primary my-2 my-sm-0'
+  .d-flex.justify-content-center
+    = form_with url: search_words_path, method: 'GET', class: 'd-flex align-items-center mr-sm-2 w-75', local: true do |f|
+      = f.text_field :keyword, class: 'form-control mr-sm-2 w-100', minlength: 2
+      = f.submit 'Search', class: 'btn btn-primary my-2 my-sm-0', name: nil
 
     -# モーダルでの詳細検索
-    -# あとでヘルパーメソッド使って書き直すけどモーダル使用してるので注意
-    -# %button.btn.btn-outline-secondary.my-2.ml-sm-2{ type: "button", "data-toggle": "modal", "data-target": "#exampleModal" } Detaile
+    %button.btn.btn-outline-secondary.my-2{ type: "button", "data-toggle": "modal", "data-target": "#exampleModal" } Detaile
 
     -# モーダル外枠
     #exampleModal.modal{tabindex: "-1", role: "dialog", "aria-labelledby": "exampleModalLabel", "aria-hidden": "true"}
       -# モーダル本体
       .modal-dialog{ role: "document" }
         -# モーダルコンテンツ
-        .modal-content.p-2
+        .modal-content.px-4.py-2
           -# モーダルヘッダー
           .modal-header
             -# モーダルタイトル
@@ -22,51 +22,46 @@
               %span{ "aria-hidden": "true"} &times;
           -# モーダル本文
           .modal-body
-          %form
-            .form-group.row.mb-2
-              %label.col-sm-4.col-form-label.col-form-label-sm{for: "select1"} ジャンルで絞り込む
+          = form_with url: search_words_path, method: 'GET', local: true do |f|
+            .form-group.row.mb-2.align-items-center
+              = f.label :select1, 'ジャンルで絞り込む', class: 'col-sm-4 col-form-label col-form-label-sm'
               .col-sm-8
-                %select#select1.form-control.form-control-sm
-                  %option{value: "1"} -
-                  %option{value: "2"} インテリア・寝具・収納
-                  %option{value: "3"} キッチン用品・食器・調理器具
-                  %option{value: "4"} 日用品雑貨・文房具・手芸
-                  %option{value: "5"} キッズ・ベビー・マタニティ
-                  %option{value: "6"} 花・ガーデン・DIY
-            .form-group.row.mb-2
-              %label.col-sm-4.col-form-label.col-form-label-sm{for: "text1"} キーワード
+                = f.select :genreId, [ ["インテリア・寝具・収納", 100804], ["キッチン用品・食器・調理器具", 558944], ["日用品雑貨・文房具・手芸", 215783] ,["キッズ・ベビー・マタニティ", 100533], ["花・ガーデン・DIY", 100005] ], { prompt: 'ジャンルを選択してください' }, { class: 'form-control form-control-sm', id: 'select1' }
+            .form-group.row.mb-2.align-items-center
+              = f.label :text1, 'キーワード', class: 'col-sm-4 col-form-label col-form-label-sm'
               .col-sm-8
-                %input#text1.form-control.form-control-sm{type: "search"}
-            .form-group.row.mb-2
-              %label.col-sm-4.col-form-label.col-form-label-sm{for: "text2"} 除外キーワード
+                = f.text_field :keyword, id:'text1', class: 'form-control form-control-sm',type: 'search', minlength: 2
+            .form-group.row.mb-2.align-items-center
+              = f.label :text2, '除外キーワード', class: 'col-sm-4 col-form-label col-form-label-sm'
               .col-sm-8
-                %input#text2.form-control.form-control-sm{type: "search"}
+                = f.text_field :NGKeyword, id:'text2', class: 'form-control form-control-sm',type: 'search', minlength: 2 do
                   %span.small を除く
-            .form-group.row.mb-2
-              %label.col-sm-4.col-form-label.col-form-label-sm 絞り込み条件
+            .form-group.row.mb-2.align-items-center
+              = f.label :check1, '絞り込み条件', class: 'col-sm-4 col-form-label col-form-label-sm'
               .col-sm-8
-                %input#check1{type: "checkbox"}
-                %label.form-check-label.d-inline.small{for: "check1"} 送料無料
-            .form-group.row.mb-2
-              %label.col-sm-4.col-form-label.col-form-label-sm 並び替え
+                = f.check_box :postageFlag, {id: 'check1'}
+                = f.label :check1, '送料無料', class: 'form-check-label d-inline small'
+            .form-group.row.mb-2.align-items-center
+              = f.label :radios1, '並び替え', class: 'col-sm-4 col-form-label col-form-label-sm'
               .col-sm-8
                 .form-check.justify-content-start
-                  %input#radios1.form-check-input{type: "radio", name: "radios", value: "option1"}
-                  %label.form-check-label.small{for: "radios1"} 標準
+                  = f.radio_button :sort, "standard", id: 'radios1', class: 'form-check-input'
+                  = f.label :radios1, '標準', class: 'form-check-label small'
                 .form-check.justify-content-start
-                  %input#radios2.form-check-input{type: "radio", name: "radios", value: "option2"}
-                  %label.form-check-label.small{for: "radios2"} 安い順
+                  = f.radio_button :sort, "+itemPrice", id: 'radios2', class: 'form-check-input'
+                  = f.label :radios2, '安い順', class: 'form-check-label small'
                 .form-check.justify-content-start
-                  %input#radios3.form-check-input{type: "radio", name: "radios", value: "option3"}
-                  %label.form-check-label.small{for: "radios3"} 高い順
+                  = f.radio_button :sort, "-itemPrice", id: 'radios3', class: 'form-check-input'
+                  = f.label :radios3, '高い順', class: 'form-check-label small'
                 .form-check.justify-content-start  
-                  %input#radios4.form-check-input{type: "radio", name: "radios", value: "option4"}
-                  %label.form-check-label.small{for: "radios4"} レビュー多い順
+                  = f.radio_button :sort, "-reviewCount", id: 'radios4', class: 'form-check-input'
+                  = f.label :radios4, 'レビュー多い順', class: 'form-check-label small'
 
-            -# 検索ボタン  
-            %button.btn.btn-primary.my-2.mx-5 Search
-          .modal-footer
-            -# 閉じるボタン
+            -# 検索ボタン
+            .form-group.row.mb-2.align-items-center.justify-content-center
+              = f.submit 'Search', class: 'btn btn-primary m-3 w-100', name: nil
+          .modal-footer.align-items-center
+            -# 閉じるボタン（閉じるだけだからボタン要素をそのまま使用）
             %button.btn.btn-secondary{ type: "button", "data-dismiss": "modal" } 閉じる
 
   %p.leads.small.text-center.mt-3 よく検索されているワード： チェア デスク ロッカー
