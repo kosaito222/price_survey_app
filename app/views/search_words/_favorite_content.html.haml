@@ -1,0 +1,63 @@
+%main.container-fluid
+  .row.my-2
+    -# 実行結果件数及び速度
+    .col-4
+      %span.small.text-secondary
+        - if @favorite.present?
+          = "#{@favorite.length} 件 (#{(Time.now - @startTime).round(3)})秒"
+    -# 料金比較
+    .col-8
+      .d-flex.justify-content-end
+        = link_to "Save as CSV", favorite_search_words_path(format: :csv), class: "btn btn-success btn-sm my-2 my-sm-0"
+      -# %form#comparisonForm.form-inline.justify-content-end
+      -#   %input#comparisonText.form-control.form-control-sm.mr-sm-2.w-25{type: "number"}
+      -#   %button#comparisonBtn.btn.btn-success.btn-sm.my-2.my-sm-0 Comparison
+  -# 検索結果テーブル
+  .row.justify-content-center
+    .table-responsive
+      %table#resultTable.table.table-striped.table-hover
+        %thead.thead-light
+          %tr
+            %th{scope: "col"} rec
+            -# %th{scope: "col"} thumnail
+            %th{scope: "col"} shopName
+            -# %th{scope: "col"} itemCode
+            %th{scope: "col"} itemName
+            %th{scope: "col"} reviewCount
+            %th{scope: "col"} reviewAverage
+            %th{scope: "col"} itemPrice
+            %th{scope: "col"} pointRate
+            %th{scope: "col"} realPrice
+            %th{scope: "col"} act
+        %tbody
+          - if @favorite.present?
+            - @favorite.each_with_index do |item, i|
+              %tr
+                %th{scope: "row"}
+                  = i + 1
+                -# %td.smallImageUrls
+                -#   = item.smallImageUrls
+                %td
+                  = item.shopName
+                -# %td
+                -#   = item['itemCode']
+                %td.td-itemName
+                  = item.itemName
+                %td
+                  = item.reviewCount
+                %td
+                  = item.reviewAverage
+                %td.itemPrice
+                  = item.itemPrice
+                %td
+                  = item.pointRate
+                %td.realPrice
+                  = item.realPrice
+                %td.align-middle
+                  -# = button_to "/search_words/#{item.id}", {method: :delete, class: "btn btn-danger my-2 text-nowrap"} do
+                  -#   %i.fas.fa-save
+                  -#     Delete
+                  %button.deleteBtn.btn.btn-danger.my-2.text-nowrap{type: "button", "data-id": "#{item.id}"}
+                    %i.fas.fa-trash
+                      %span.save
+                        Delete

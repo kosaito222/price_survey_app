@@ -27,6 +27,7 @@
             %th{scope: "col"} pointRate
             %th{scope: "col"} realPrice
             %th{scope: "col"} comparison
+            %th{scope: "col"} act
         %tbody
           - if @searchResult.present?
             - @items.each_with_index do |item, num|
@@ -48,12 +49,18 @@
                 %td
                   = item['reviewAverage']
                 %td.itemPrice
-                  = (item['itemPrice']).to_s(:delimited)
+                  = (item['itemPrice'])
                 %td
                   = item['pointRate']
                 %td.realPrice
                   = (item['itemPrice'].to_i * ( 1 - item['pointRate'].to_i * 0.01)).floor.to_i
                 %td.comparisonValue
+                %td.align-middle
+                  %button.saveBtn.btn.btn-success.my-2.text-nowrap{ "data-toggle" => "tooltip", type: "button" }
+                    %i.fas.fa-save
+                      %span.save
+                        Save
+                  
 
   - if @items.present?
     .row.justify-content-center

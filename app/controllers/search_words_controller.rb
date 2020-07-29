@@ -25,13 +25,39 @@ class SearchWordsController < ApplicationController
     end
   end
 
+  def create
+    SearchWord.create(params.permit(:smallImageUrls, :shopName, :itemName, :reviewCount, :reviewAverage, :itemPrice, :pointRate, :realPrice))
+  end
+
+  def destroy
+    favoriteProduct = SearchWord.find(params[:id])
+    favoriteProduct.destroy
+  end
+
+  def favorite
+    @startTime = Time.now
+    @favorite = SearchWord.all
+
+    respond_to do |format|
+      format.html do
+      end
+      format.csv do
+        # send_data render_to_string, filename: "hoge.csv", type: :csv
+      end
+    end
+  end
+
   private
   # ページをパラメータとしてリクエストを投げるメソッド
   def searchRequest(page)
     default_params = { NGKeyword: "NGKeyword", postageFlag: 0, sort: "standard" }
     merged_params = default_params.merge(params.permit(:keyword, :NGKeyword, :genreId, :postageFlag, :sort, :page).select{ |k,v| v.present?})
-
+    
     RakutenWebService::Ichiba::Item.search(merged_params) 
+  end
+
+  def product_params
+  
   end
 
 end
