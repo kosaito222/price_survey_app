@@ -9,7 +9,7 @@ class SearchWordsController < ApplicationController
       # 10ページ取得
       # 重たいのでロジックを要検討
       # 一度DBに打ち込んでしまったほうがページネーションは速そう
-      1.times do |i|
+      3.times do |i|
         i += 1
         @searchResult = searchRequest(i)
         # 結果を配列に入れる
@@ -17,8 +17,9 @@ class SearchWordsController < ApplicationController
           @items_array.push(item)
         end
       end
+
       # 配列をページネート
-      @items = Kaminari.paginate_array(@items_array).page(params[:page]).per(10)
+      @items = Kaminari.paginate_array(@items_array).page(params[:page]).per(20)
     else
       puts "空白です。"
     end
