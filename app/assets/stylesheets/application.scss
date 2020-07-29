@@ -1,4 +1,8 @@
-@import "reset";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "bootstrap";
+@import "search_results";
+
+body {
+  padding: 56px 0;
+}

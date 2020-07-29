@@ -6,6 +6,22 @@
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+
   %body
+    %header
+      %nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top
+        = link_to '#', class: 'navbar-brand' do
+          = image_tag 'logo.png', alt: 'logo', height: '30', width: '30', class: 'd-inline-block align-top'
+          = 'PRICE_SURVEY_APP'
+          = image_tag 'logo.png', alt: 'logo', height: '30', width: '30', class: 'd-inline-block align-top'
+    
     = yield
+
+    %p#page-top
+      = link_to '#' do
+        = 'PAGE TOP'
+    %footer.footer.mt-auto.py-3.bg-dark.fixed-bottom
+      .container.text-center
+        %span.d-inlin-block.text-muted.text-sm Copyright (C) 2020 k.saito All Rights
