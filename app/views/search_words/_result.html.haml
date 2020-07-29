@@ -3,7 +3,7 @@
     .col-4
       %span.small.text-secondary
         - if @items.present?
-          = "約 #{@items.count} 件"
+          = "約 #{@items.response["count"]} 件 (#{(Time.now - @startTime).round(3)})秒"
     .col-8
       %form.form-inline.justify-content-end
         %input.form-control.form-control-sm.mr-sm-2.w-25{type: "search"}
@@ -28,7 +28,7 @@
         %tbody
           - if @items.present?
             - num = @items.count
-            - @items.each_with_index do |item, num|
+            - @items.first(10).each_with_index do |item, num|
               %tr
                 %th{scope: "row"}
                   = num + 1
