@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  root to: 'search_words#index'
+  resources :search_words, only: :index
 end
