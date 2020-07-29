@@ -2,22 +2,23 @@
 //= require popper
 //= require bootstrap
 //= require_tree .
-
-$(function () {
-  var topBtn = $('#page-top');
-  // スクロールが500に達したらボタン表示
-  $(window).scroll(function() {
-    if ($(this).scrollTop() > 500) {
-      topBtn.fadeIn();
-    } else {
-      topBtn.fadeOut();
-    }
+$(document).on('turbolinks:load', function() {
+  $(function () {
+    var topBtn = $('#page-top-scroll');
+    // スクロールが500に達したらボタン表示
+    $(window).scroll(function() {
+      if ($(this).scrollTop() > 500) {
+        topBtn.fadeIn();
+      } else {
+        topBtn.fadeOut();
+      }
+    });
+    // スルスル戻る
+    topBtn.click(function() {
+      $('body, html').animate({
+        scrollTop: 0
+      }, 500);
+      return false;
+    })
   });
-  // スルスル戻る
-  topBtn.click(function() {
-    $('body, html').animate({
-      scrollTop: 0
-    }, 500);
-    return false;
-  })
 });
