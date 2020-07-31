@@ -1,5 +1,5 @@
 class SearchWordsController < ApplicationController
-
+  
   def index
     # フォームからキーワードを受け取って楽天から検索して結果をもらう
     @startTime = Time.now
